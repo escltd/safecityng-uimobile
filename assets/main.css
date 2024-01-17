@@ -1,0 +1,928 @@
+html{
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+.bg-modal {
+  /* Set the background color to blue with 50% opacity */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img-rounded {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+}
+
+.img-profile-rounded {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 100%;
+}
+
+.notification {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+}
+
+.btm {
+  border-bottom: 1px solid #525252;
+}
+
+.outline-default {
+  border: 1px solid #A3A3A3
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    /* -webkit-text-fill-color: #fff !important; */
+}
+
+.inputfield {
+  border-radius: 0;
+  border-bottom-style: solid;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 2;
+  border-left-width: 0;
+}
+
+.inputfield2 {
+  border-radius: 0;
+  border-bottom-style: solid;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  border-left-width: 0;
+}
+
+.inputfield3 {
+  border-radius: 0;
+  border-bottom-style: solid;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 0;
+}
+
+select {
+  /* // A reset of styles, including removing the default dropdown arrow */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  background-image: url("./img/expand.svg");
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) center;
+
+  /* // Stack above custom arrow */
+  z-index: 1;
+
+  /* // Remove dropdown arrow in IE10 & IE11 */
+  /* // @link https://www.filamentgroup.com/lab/select-css.html */
+  &::-ms-expand {
+    display: none;
+  }
+
+  /* // Remove focus outline, will add on alternate element */
+  outline: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  position: relative;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
+
+  min-width: 15ch;
+  max-width: 30ch;
+
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+
+  /* // Optional styles */
+  /* // remove for transparency */
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+  /* // Custom arrow */
+  &:not(.select--multiple)::after {
+    content: "";
+    justify-self: end;
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+}
+
+/* // Interim solution until :focus-within has better support */
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--select-focus);
+  border-radius: inherit;
+}
+
+
+.select--disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  background-image: linear-gradient(to top, #ddd, #eee 33%);
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.select + label {
+  margin-top: 2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;  
+    height: 100%;
+    color: #4c4c4c;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* To ensure that buttons and input fields have same width at full width */
+input {
+  box-sizing: border-box;
+}
+
+.hero-bg {
+  background-image: url("./img/Landing-img/bg-red.jpg");
+}
+
+.digit-box {
+    height: 4rem;
+    width: 5.9656rem;
+    border-top: 0px;
+    border-bottom: 2px solid #525252;
+    border-left: 0px;
+    border-right: 0px;
+    display: inline-block;
+    /* border-radius: 5px; */
+    margin-right: 15px;
+    padding: 15px;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.digit-box:focus {
+  outline: 0px;
+}
+
+
+.modal {
+  /* position: absolute; */
+  height: 350px;
+  width: 350px;
+  left: 419px;
+  top: 222px;
+  border-radius: 10px;
+  color: #525252;
+  background-color: white;
+  z-index: 1;
+}
+.modal .close img{
+  width: 12px;
+  height: 12px;
+  padding: 2rem;
+  
+}
+
+.modal .text{
+  position: absolute;
+  height: 252px;
+  width: 286px;
+  left: 419px;
+  top: 222px;
+  border-radius: 10px;
+  color: #525252;
+  background-color: white;
+  z-index: 1;
+}
+
+.modal .buttons {
+  position: absolute;
+  height: 252px;
+  width: 286px;
+  left: 419px;
+  top: 222px;
+  border-radius: 10px;
+  color: #525252;
+  background-color: white;
+  z-index: 1;
+}
+
+.bounce {
+  animation: pulse .3s ease-in-out alternate;
+}
+
+
+#pieChartCanvas{
+  width:  462px !important;
+  height:  400px !important;
+}
+
+#pieChartCanvas2 {
+  width:  462px !important;
+  height:  400px !important;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@media screen and (max-width: 144.25em) {
+  @-webkit-keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0);
+    }
+  }
+
+  @-moz-keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      -moz-transform: translateX(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -moz-transform: translateX(0);
+    }
+  }
+
+  @-o-keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      -o-transform: translateX(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -o-transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slideInLeft {
+    -webkit-animation-name: slideInLeft;
+    -moz-animation-name: slideInLeft;
+    -o-animation-name: slideInLeft;
+    animation-name: slideInLeft;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    display: inline-block;
+  }
+
+  @-webkit-keyframes slideOutLeft {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -webkit-transform: translateX(500px);
+    }
+  }
+
+  @-moz-keyframes slideOutLeft {
+    0% {
+      opacity: 1;
+      -moz-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -moz-transform: translateX(500px);
+    }
+  }
+
+  @-o-keyframes slideOutLeft {
+    0% {
+      opacity: 1;
+      -o-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -o-transform: translateX(500px);
+    }
+  }
+
+  @keyframes slideOutLeft {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(500px);
+    }
+  }
+
+  .slideOutLeft {
+    -webkit-animation-name: slideOutLeft;
+    -moz-animation-name: slideOutLeft;
+    -o-animation-name: slideOutLeft;
+    animation-name: slideOutLeft;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 144.25em) {
+  @-webkit-keyframes slideInRight {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0);
+    }
+  }
+
+  @-moz-keyframes slideInRight {
+    0% {
+      opacity: 0;
+      -moz-transform: translateX(-500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -moz-transform: translateX(0);
+    }
+  }
+
+  @-o-keyframes slideInRight {
+    0% {
+      opacity: 0;
+      -o-transform: translateX(-500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -o-transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(-500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slideInRight {
+    -webkit-animation-name: slideInRight;
+    -moz-animation-name: slideInRight;
+    -o-animation-name: slideInRight;
+    animation-name: slideInRight;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    display: inline-block;
+  }
+
+  @-webkit-keyframes slideOutRight {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -webkit-transform: translateX(-500px);
+    }
+  }
+
+  @-moz-keyframes slideOutRight {
+    0% {
+      opacity: 1;
+      -moz-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -moz-transform: translateX(-500px);
+    }
+  }
+
+  @-o-keyframes slideOutRight {
+    0% {
+      opacity: 1;
+      -o-transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -o-transform: translateX(-500px);
+    }
+  }
+
+  @keyframes slideOutRight {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(-500px);
+    }
+  }
+
+  .slideOutRight {
+    -webkit-animation-name: slideOutRight;
+    -moz-animation-name: slideOutRight;
+    -o-animation-name: slideOutRight;
+    animation-name: slideOutRight;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 144.25em) {
+  @-webkit-keyframes slideUp {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+    }
+  }
+
+  @-moz-keyframes slideUp {
+    0% {
+      opacity: 0;
+      -moz-transform: translateY(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -moz-transform: translateY(0);
+    }
+  }
+
+  @-o-keyframes slideUp {
+    0% {
+      opacity: 0;
+      -o-transform: translateY(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      -o-transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(500px);
+    }
+
+    60% {
+      opacity: 0.3;
+    }
+
+    80% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slideUp {
+    -webkit-animation-name: slideUp;
+    -moz-animation-name: slideUp;
+    -o-animation-name: slideUp;
+    animation-name: slideUp;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+  }
+
+  @-webkit-keyframes slideDown {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -webkit-transform: translateY(500px);
+    }
+  }
+
+  @-moz-keyframes slideDown {
+    0% {
+      opacity: 1;
+      -moz-transform: translateY(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -moz-transform: translateY(500px);
+    }
+  }
+
+  @-o-keyframes slideDown {
+    0% {
+      opacity: 1;
+      -o-transform: translateY(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      -o-transform: translateY(500px);
+    }
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    60% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(500px);
+    }
+  }
+
+  .slideDown {
+    -webkit-animation-name: slideDown;
+    -moz-animation-name: slideDown;
+    -o-animation-name: slideDown;
+    animation-name: slideDown;
+
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -ms-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .digit-box {
+    height: 4rem;
+    width: 4rem;
+    /* border-radius: 5px; */
+    margin-right: 15px;
+    padding: 15px;
+    font-size: 3rem;
+    text-align: center;
+}
+  .modal {
+    left: 360px;
+    top: 170px;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .modal {
+    left: 49px;
+    top: 182px;
+  }
+
+  .hero-bg {
+    background-image: url("./assets/img/Landing-img/Rd-bg-mobile.jpg");
+  }
+}
