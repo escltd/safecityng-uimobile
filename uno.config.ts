@@ -55,8 +55,7 @@ export default defineConfig({
     presetWebFonts({
       provider: "google",
       fonts: {
-        montserrat: "Montserrat",
-        raleway: "Raleway",
+        maven: "Maven Pro",
       },
     }),
   ],

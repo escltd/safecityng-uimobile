@@ -1,46 +1,93 @@
-# safecity ui mobile (nuxt3)
+<h1 align='center'>
+  SafeCityNG UI Mobile
+</h1>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 📜 Table of Contents
+- [🧐 Business context](#-business-context)
+- [🔨 Technology stack](#-technology-stack)
+- [💻 Project setup](#-project-setup)
+- [Clone this repo](#clone-this-repo)
+- [Setup .env file](#setup-env-file)
+- [Run locally](#run-locally)
+- [Compile app](#compile-app)
+- [Run app](#run-app)
 
-## Directory Structure
+---
 
-To understand the directory structure better please checkout this link -> https://nuxt.com/docs/guide/directory-structure/
+# 🧐 Business context
 
-## Setup
+### Project Goal
+Create a Mobile Frontend UI to serve SafeCityNG 
 
-Make sure to install the dependencies:
+---
 
-```bash
-# yarn
-yarn install
+# 🔨 Technology stack
 
+- Typescript _statically typed, compiled high-level programming language_
+- Nuxt3 _javascript meta-framework built on top of vue_
+- Vue3 _javascript framework for building user interfaces_
+- UnoCss _flexible and extensible atomic CSS engine_
+
+- Commits follow Conventions as per https://github.com/conventional-changelog/commitlint
+---
+
+
+# 💻 Project setup
+
+
+### Clone this repo
+
+To install this project, first clone repo to your machine (use SSH) and change to directory
+
+```
+cd safecityng-uimobile
+```
+
+### Install dependencies
+
+Execute this commands in your terminal:
+
+```
 # npm
 npm install
 
-# pnpm
-pnpm install
+# yarn 
+yarn install
 ```
 
-## Development Server
+### Setup .env file
 
-Start the development server on `http://localhost:3000`
+Create `.env` file based on `.env.sample` and fill in variables from a suitable source.
 
-```bash
+### Run locally
+
+```
+# npm
 npm run dev
+
+# yarn 
+yarn dev
 ```
 
-## Production
+### Compile app
+To compile the app run 
 
-Build the application for production:
+```
+# npm
+npm run generate
 
-```bash
-npm run build
+# yarn 
+yarn generate
 ```
 
-Locally preview production build:
 
-```bash
-npm run preview
+### Run app
+To run the app run 
+
+```sh
+# docker
+docker build -t safecityng-uimobile .
+
+# docker run
+docker run --name=webapp -p 8080:80  -d safecityng-uimobile
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

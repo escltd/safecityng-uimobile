@@ -35,3 +35,6 @@ dist
 sw.*
 package-lock.json
 yarn.lock
+
+dist/
+.output/

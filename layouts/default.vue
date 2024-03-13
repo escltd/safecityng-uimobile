@@ -1,5 +1,5 @@
 <template>
-    <div class="font-montserrat">
-        <slot />
-    </div>
+  <div class="font-maven">
+    <slot />
+  </div>
 </template>
