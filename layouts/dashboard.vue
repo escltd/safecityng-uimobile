@@ -8,6 +8,9 @@
             <i class="text-[1.5em] i-mdi-account-outline cursor-pointer "></i> 
           </div>
         </NuxtLink>
+
+        <input type="text" placeholder="Search area" :class="route.endsWith('dashboard')? '' : 'hidden'"
+        class="m-r-2 caret-black p-2 <md:w-60  w-80 b-rounded bg-#0001 text-center text-[1.1rem] <smw-full border-solid border-t-0 border-r-0 border-l-0 border-b-0 text-black border-coolgray"/>
             
         <NuxtLink to="/dashboard/notifications" class="flex relative m-r-1">
           <i class="text-[1.7em] i-mdi-bell-outline cursor-pointer "></i> 
