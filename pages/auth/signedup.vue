@@ -5,13 +5,13 @@
         <img src="~/assets/img/logo.svg" class="h-10 caret-transparent" alt="" />
 
         <div class="p-y-3 text-left font-bold w-60 text-[1rem]">
-          Great news!. <br/><br/> 
+          Great news! <br/><br/> 
           We've just sent an activation email to the address you provided <br/><br/>
 
           Click on the activation link in the email to complete the registration process <br/><br/>
           
           
-          Thank you for joining us!".<br/><br/>
+          Thank you for joining us!<br/><br/>
 
           <div class="text-gray text-[0.7rem]">
             Please check your inbox (and don't forget to look in your spam folder, just in case). <br/><br/>
