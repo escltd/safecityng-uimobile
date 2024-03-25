@@ -1,0 +1,65 @@
+name: Dev / Test / Stage Deployments
+
+on:
+  issue_comment:
+    types: [created]
+
+# Permissions needed for reacting and adding comments for IssueOps commands
+permissions:
+  pull-requests: write
+  deployments: write
+  contents: write
+  checks: read
+
+jobs:
+  trigger:
+    name: Branch deployment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    outputs:
+      ref: ${{ steps.branch-deploy.outputs.ref }}
+      continue: ${{ steps.branch-deploy.outputs.continue }}
+      environment: ${{ steps.branch-deploy.outputs.environment }}
+    steps:
+      - name: Branch deploy
+        uses: github/branch-deploy@v8.2.1
+        id: branch-deploy
+        with:
+          trigger: ".deploy"
+          environment: "test"
+          skip_completing: "true"
+          environment_targets: "dev,test,stage"
+
+  docker_deploy:
+    name: Docker Deploy to ${{needs.trigger.outputs.environment}}
+    needs: trigger
+    runs-on: ubuntu-latest
+    if: ${{ needs.trigger.outputs.environment != '' }}  
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.trigger.outputs.ref }}
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }} >> .env
+          cat .env
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push to ${{needs.trigger.outputs.environment}} environment
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          provenance: false
+          tags: savalite/images:safecityng-uimobile-${{needs.trigger.outputs.environment}}
+          build-args: REPOSITORY=savalite/images:safecityng-uimobile-${{needs.trigger.outputs.environment}} 
+      - name: set deployment status
+        run: |
+          echo "DEPLOY_STATUS=success" >> $GITHUB_OUTPUT

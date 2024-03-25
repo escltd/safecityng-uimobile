@@ -4,6 +4,5 @@ node_modules/
 dist/
 .husky/
 .nuxt/
-.env
 yarn.lock
 package-lock.json
