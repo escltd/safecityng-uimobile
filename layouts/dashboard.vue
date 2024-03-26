@@ -31,12 +31,12 @@
             :class="route.endsWith('dashboard') ? 'text-dark-50' : ''">
             <i class="text-[2em] i-mdi-home-account cursor-pointer"></i> <br/> Home
           </NuxtLink>
-          <NuxtLink to="/dashboard/account-transactions" class="text-[0.8rem] text-center p-2 w-100 text-ellipsis"
-          :class="route.includes('account-transactions') ? 'text-dark-50' : ''">
+          <NuxtLink to="/dashboard/incidents" class="text-[0.8rem] text-center p-2 w-100 text-ellipsis"
+          :class="route.includes('incidents') ? 'text-dark-50' : ''">
             <i class="text-[2em] i-mdi-flash-triangle-outline cursor-pointer"></i> <br/> Incidents
           </NuxtLink>
-          <NuxtLink to="/dashboard/beneficiaries" class="text-[0.8rem] text-center p-2 w-100 text-ellipsis"
-          :class="route.includes('beneficiaries') ? 'text-dark-50' : ''">
+          <NuxtLink to="/dashboard/safetytips" class="text-[0.8rem] text-center p-2 w-100 text-ellipsis"
+          :class="route.includes('safetytips') ? 'text-dark-50' : ''">
             <i class="text-[2em] i-mdi-safety-belt cursor-pointer"></i> <br/> Safety Tips
           </NuxtLink>
           <div class="text-[0.8rem] text-center p-2 w-100 text-ellipsis"
