@@ -72,8 +72,76 @@
             </div>
 
           </div>
-        
         </div>
+
+         <div v-if="stage==3" class="text-3 flex flex-col gap-2">
+          <div class="">
+            How old are you?<span class="text-red">*</span>
+
+            <div class="text-2">
+              In case you are reporting for someone else, please make sure you answer the questions on their behalf
+            </div>
+          </div>
+          
+          <div class="flex flex-col ">
+            <span class="text-2">
+              Please enter age in years. E.g 22
+            </span>
+            <input v-model="formData.age" type="number"
+            class="caret-black p-2 bg-#0001 text-2 <smw-full border-width-0  text-black b-rounded"/>
+          </div>
+
+
+          <div class="flex justify-between items-center">
+            <div @click="prevStage()"
+             class="w-10 text-center p-x-2 py-1 cursor-pointer rounded items-center bg-#0001 text-red">
+              Back
+            </div>
+
+            <div @click.prevent="formData.age==0 ? false : nextStage()" 
+             :class="formData.age==0 ? 'bg-light text-red-100' : 'bg-red-6 text-light'"
+             class="w-10  text-center p-x-2 py-1 cursor-pointer rounded items-center">
+              Next
+            </div>
+          </div>
+        </div>
+
+        <div v-if="stage==4" class="text-3 flex flex-col gap-2">
+          <div class="">
+            Please tell us your gender?<span class="text-red">*</span>
+
+            <div class="text-2">
+              In case you are reporting for someone else, please make sure you answer the questions on their behalf
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="flex bg-#0001 b-rounded p-2 items-center cursor-pointer" @click="formData.gender = 'male'">
+              <span class="w-100%">Male</span>
+              <i v-if="formData.gender == 'male'" class="i-mdi-check text-black"></i>
+            </div>
+            <div class="flex bg-#0001 b-rounded p-2 items-center cursor-pointer" @click="formData.gender = 'female'">
+              <span class="w-100%">Female</span>
+              <i v-if="formData.gender == 'female'" class="i-mdi-check text-black"></i>
+            </div>
+          </div>
+
+
+          <div class="flex justify-between items-center">
+            <div @click="prevStage()"
+             class="w-10 text-center p-x-2 py-1 cursor-pointer rounded items-center bg-#0001 text-red">
+              Back
+            </div>
+
+            <div @click.prevent="formData.gender=='' ? false : nextStage()" 
+             :class="formData.gender=='' ? 'bg-light text-red-100' : 'bg-red-6 text-light'"
+             class="w-10  text-center p-x-2 py-1 cursor-pointer rounded items-center">
+              Next
+            </div>
+
+          </div>
+        </div>
+
 
       </div>
       
@@ -93,12 +161,14 @@ const close = () => {
 };
 
 let maxStage = ref(11)
-let stage = ref(2); 
+let stage = ref(1); 
 
 let isLoading = ref(false); 
 const initialState = reactive({
   consent: false,
   victim: "",
+  age: 0,
+  gender: "",
 
   bankname: "",
   accountname: "",
