@@ -1,7 +1,7 @@
 <template>
   <div>
     <Modal class="bg-zinc-100">
-      <div class="flex flex-row items-center w-100% justify-between">
+      <div class="flex flex-row items-start w-100% justify-between">
         <div class="font-extrabold text-1rem pb-1">Incident Reporting</div>
         <div
           class="text-3 bg-neutral-300 rounded-full flex justify-center items-center w-5 h-5 cursor-pointer"
@@ -10,8 +10,12 @@
           <i class="i-mdi-close"></i>
         </div>
       </div>
+      <div class="w-100% text-2">
+        {{ truncateNumber((stage/maxStage)*100,2) }}% Completed
+        <div class="bg-green h1" :style="'width:'+truncateNumber((stage/maxStage)*100,2)+'%'"></div>
+      </div>
 
-      <div class="max-h-[500px] flex flex-col overflow-y-scroll p-b-3">
+      <div class="max-h-[500px] flex flex-col overflow-y-scroll p-y-2">
 
         <div v-if="stage==1" class="text-3">
           We understand that it is difficult to recall one's traumatic experiences. 
@@ -22,17 +26,54 @@
            <br/> <br/>
 
            <div class="items-center flex">
-             <input type="checkbox" value="consent" class="cursor-pointer" v-model="formData.consent" /> I consent
+             <input type="checkbox" class="cursor-pointer" v-model="formData.consent" /> I consent
            </div>
 
-           <br/> <br/>
-
-           <span @click="toggleCreateIncident" class="bg-red-6 text-center text-light p-x-2 py-1 text-4 cursor-pointer rounded items-center">
+           <br/>
+           
+           <div @click.prevent="formData.consent!==true ? false : nextStage()" 
+           :class="formData.consent!==true ? 'bg-light text-red-100' : 'bg-red-6 text-light'"
+           class="w-10  text-center p-x-2 py-1 cursor-pointer rounded items-center">
             Next
-          </span>
+          </div>
         </div>
 
+        <div v-if="stage==2" class="text-3 flex flex-col gap-2">
+          <div class="">
+            Who are you sharing for?<span class="text-red">*</span>
 
+            <div class="text-2">
+              In case you are reporting for someone else, please make sure you answer the questions on their behalf
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="flex bg-#0001 b-rounded p-2 items-center cursor-pointer" @click="formData.victim = 'myself'">
+              <span class="w-100%">Myself</span>
+              <i v-if="formData.victim == 'myself'" class="i-mdi-check text-black"></i>
+            </div>
+            <div class="flex bg-#0001 b-rounded p-2 items-center cursor-pointer" @click="formData.victim = 'someone else'">
+              <span class="w-100%">Someone else</span>
+              <i v-if="formData.victim == 'someone else'" class="i-mdi-check text-black"></i>
+            </div>
+          </div>
+
+
+          <div class="flex justify-between items-center">
+            <div @click="prevStage()"
+             class="w-10 text-center p-x-2 py-1 cursor-pointer rounded items-center bg-#0001 text-red">
+              Back
+            </div>
+
+            <div @click.prevent="formData.victim=='' ? false : nextStage()" 
+             :class="formData.victim=='' ? 'bg-light text-red-100' : 'bg-red-6 text-light'"
+             class="w-10  text-center p-x-2 py-1 cursor-pointer rounded items-center">
+              Next
+            </div>
+
+          </div>
+        
+        </div>
 
       </div>
       
@@ -51,12 +92,14 @@ const close = () => {
   emit("close");
 };
 
-let stage = ref(1); 
+let maxStage = ref(11)
+let stage = ref(2); 
 
-let selectedCountry = ref({});
 let isLoading = ref(false); 
 const initialState = reactive({
-  country: "",
+  consent: false,
+  victim: "",
+
   bankname: "",
   accountname: "",
   accountnumber: "",
@@ -75,6 +118,16 @@ const pressEnter = (event) => {
   }
 };
 
+const prevStage = () => {
+  stage.value += -1;
+  if (stage.value <= 1) {
+    stage.value = 1;
+  }
+};
+
+const nextStage = () => {
+  stage.value += 1;
+};
 
 const resetForm = () => {
   isLoading.value = false;
